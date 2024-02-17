@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:15.5-bullseye
+    container_name: my-db
+    ports:
+      - 54321:54321
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    networks:
+      - smoker
+
+  app:
+    build: 
+      dockerfile: Dockerfile
+    image: suppharoek/app:1.0.0
+    container_name: my-app
+    ports:
+      - 13377:13377
+    environment:
+      - DATABASE_CLIENT=postgres
+      - DATABASE_HOST=db
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_SSL={DATABASE_SSL}
+    networks:
+      - smoker
+    depends_on:
+      - db
+
+networks:
+  smoker:
