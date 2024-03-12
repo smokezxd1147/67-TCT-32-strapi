@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "teachers",
+  "collectionName": "students",
   "info": {
-    "singularName": "teacher",
-    "pluralName": "teachers",
-    "displayName": "Teacher",
+    "singularName": "student",
+    "pluralName": "students",
+    "displayName": "student",
     "description": ""
   },
   "options": {
@@ -20,10 +20,15 @@
       "type": "string",
       "required": true
     },
+    "age": {
+      "type": "integer",
+      "max": 2,
+      "required": true
+    },
     "Tell": {
       "type": "integer",
-      "max": 10,
       "min": 10,
+      "max": 10,
       "required": true
     }
   }
