@@ -4,7 +4,8 @@
   "info": {
     "singularName": "class-room",
     "pluralName": "class-rooms",
-    "displayName": "Class room"
+    "displayName": "Classroom",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,6 +15,18 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "Student": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::class-room.class-room",
+      "inversedBy": "class_rooms"
+    },
+    "class_rooms": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::class-room.class-room",
+      "inversedBy": "Student"
     }
   }
 }

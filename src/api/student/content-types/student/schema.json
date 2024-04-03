@@ -21,15 +21,16 @@
       "required": true
     },
     "age": {
-      "type": "integer",
-      "max": 2,
-      "required": true
+      "type": "string",
+      "required": true,
+      "maxLength": 2,
+      "minLength": 1
     },
-    "Tell": {
-      "type": "integer",
-      "min": 10,
-      "max": 10,
-      "required": true
+    "mobile": {
+      "type": "string",
+      "required": true,
+      "minLength": 10,
+      "maxLength": 10
     }
   }
 }
