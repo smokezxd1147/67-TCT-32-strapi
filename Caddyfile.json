@@ -1,0 +1,40 @@
+{
+    "apps": {
+      "http": {
+        "servers": {
+          "srv0": {
+            "listen": [":443"],
+            "routes": [
+              {
+                "handle": [
+                  {
+                    "handler": "reverse_proxy",
+                    "upstreams": [
+                      {
+                        "dial": "127.0.0.1:9999"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "tls_connection_policies": [
+              {
+                "match": {
+                  "sni": ["myapp.local"]
+                },
+                "certificate_selection": {
+                  "fallback": {
+                    "match_all": {}
+                  }
+                },
+                "protocols": ["h2", "http/1.1"],
+                "certificate_authorities": ["your_ca.crt"],
+                "ocsp_stapling": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
